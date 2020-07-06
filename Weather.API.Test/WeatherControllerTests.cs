@@ -1,4 +1,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.Extensions.Logging;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Weather.API.Controllers;
+using Moq;
 
 namespace Weather.API.Test
 {
@@ -6,8 +12,18 @@ namespace Weather.API.Test
     public class WeatherControllerTests
     {
         [TestMethod]
-        public void TestMethod1()
+        [Description("Validates that the controller returns 5 values")]
+        public void WeatherController_Get_Returns5Restults()
         {
+            // Arrange
+            var mockLogger = new Mock<ILogger<WeatherForecastController>>();
+            var controller = new WeatherForecastController(mockLogger.Object);
+
+            // Act 
+            var response = controller.Get();
+
+            // Assert
+            Assert.AreEqual(5, response.ToList().Count());
         }
     }
 }
