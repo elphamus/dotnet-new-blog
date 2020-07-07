@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Weather.API.Controllers;
+using Weather.API.Interfaces;
 using Moq;
 
 namespace Weather.API.Test
@@ -17,7 +18,8 @@ namespace Weather.API.Test
         {
             // Arrange
             var mockLogger = new Mock<ILogger<WeatherForecastController>>();
-            var controller = new WeatherForecastController(mockLogger.Object);
+            var mockDateService = new Mock<IDateService>();
+            var controller = new WeatherForecastController(mockLogger.Object, mockDateService.Object);
 
             // Act 
             var response = controller.Get();
@@ -30,7 +32,7 @@ namespace Weather.API.Test
         [Description("Validates that the controller returns the correct dates")]
         public void WeatherController_Get_ReturnsCorrectDates()
         {
-            
+
         }
     }
 }
