@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Weather.API.Interfaces;
 
 namespace Weather.API.Controllers
 {
@@ -17,10 +18,12 @@ namespace Weather.API.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IDateService _dateService;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IDateService dateService)
         {
             _logger = logger;
+            _dateService = dateService;
         }
 
         [HttpGet]

@@ -25,5 +25,12 @@ namespace Weather.API.Test
             // Assert
             Assert.AreEqual(5, response.ToList().Count());
         }
+
+        [TestMethod]
+        [Description("Validates that the controller returns the correct dates")]
+        public void WeatherController_Get_ReturnsCorrectDates()
+        {
+            
+        }
     }
 }
